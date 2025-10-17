@@ -2,7 +2,7 @@ using System.Net;
 
 namespace MyRecipeBook.Exceptions.ExceptionsBase;
 
-public class NotFoundException : TemplateException
+public class NotFoundException : ClassReportException
 {
     public NotFoundException(string message) : base(message){}
     

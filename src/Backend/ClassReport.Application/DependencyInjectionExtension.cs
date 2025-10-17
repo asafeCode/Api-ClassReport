@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyRecipeBook.Application.UseCases.CtrlPlay.Login;
 
 namespace MyRecipeBook.Application;
 
@@ -10,7 +11,8 @@ public static class DependencyInjectionExtension
         AddUseCases(services);
     }
     
-    private static void AddUseCases(this IServiceCollection services)
+    private static void AddUseCases(IServiceCollection services)
     {
+        services.AddScoped<IGetAcessTokenUseCase, GetAccessTokenUseCase>();
     } 
 }

@@ -7,8 +7,4 @@
     <RootNamespace>MyRecipeBook.Communication</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Requests\" />
-  </ItemGroup>
-
 </Project>

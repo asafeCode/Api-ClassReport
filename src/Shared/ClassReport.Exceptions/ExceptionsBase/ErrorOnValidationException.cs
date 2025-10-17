@@ -2,7 +2,7 @@
 
 namespace MyRecipeBook.Exceptions.ExceptionsBase;
 
-public class ErrorOnValidationException : TemplateException
+public class ErrorOnValidationException : ClassReportException
 {
     private readonly IList<string> _errorMessages;
 
