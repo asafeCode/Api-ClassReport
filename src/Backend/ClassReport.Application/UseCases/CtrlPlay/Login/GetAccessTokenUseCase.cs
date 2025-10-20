@@ -1,10 +1,8 @@
-﻿using System.Globalization;
-using Mapster;
+﻿using Mapster;
 using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Communication.Responses;
 using MyRecipeBook.Domain.Dtos;
 using MyRecipeBook.Domain.Extensions;
-using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 
@@ -12,23 +10,18 @@ namespace MyRecipeBook.Application.UseCases.CtrlPlay.Login;
 
 public class GetAccessTokenUseCase : IGetAcessTokenUseCase
 {
-    private readonly IGetAccessToken _tokenService;
-    private readonly IGetClasses _getClasses;
-    private readonly IGetTeacherInfo _getTeacherInfo;
-    public GetAccessTokenUseCase(IGetAccessToken tokenService,
-        IGetClasses getClasses,
-        IGetTeacherInfo getTeacherInfo)
+    private readonly IGetAccessToken _loginService;
+
+    public GetAccessTokenUseCase(IGetAccessToken tokenService)
     {
-        _tokenService = tokenService;
-        _getClasses = getClasses;
-        _getTeacherInfo = getTeacherInfo;
+        _loginService = tokenService;
     }
     
     public async Task<ResponseLoginJson> Execute(RequestLoginJson request)
     {
         Validate(request);
         var requestDto = request.Adapt<RequestLoginDto>();
-        var accessToken = await _tokenService.GetAccessToken(requestDto);
+        var accessToken = await _loginService.GetAccessToken(requestDto);
         
         return new ResponseLoginJson
         {
@@ -36,7 +29,7 @@ public class GetAccessTokenUseCase : IGetAcessTokenUseCase
         };
     }
 
-    private void Validate(RequestLoginJson request)
+    private static void Validate(RequestLoginJson request)
     {
         var validator = new GetAccessTokenValidator();
         var result = validator.Validate(request);

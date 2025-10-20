@@ -1,19 +1,26 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System.ClientModel;
+using Azure;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services;
+using MyRecipeBook.Domain.Services.OpenAI;
+using MyRecipeBook.Domain.ValueModel;
 using MyRecipeBook.Infrastructure.Clients;
 using MyRecipeBook.Infrastructure.Services;
+using MyRecipeBook.Infrastructure.Services.OpenAI;
+using OpenAI;
+using OpenAI.Chat;
 using Refit;
 
 namespace MyRecipeBook.Infrastructure;
 
 public static class DependencyInjectionExtension
 {
-    public static void AddInfrastructure(this IServiceCollection services)
+    public static void AddInfrastructure(this IServiceCollection services,  IConfiguration configuration)
     {
         AddServices(services);
         AddRefit(services);
+        AddOpenAi(services, configuration);
     }
 
     private static void AddServices(IServiceCollection services)
@@ -28,5 +35,19 @@ public static class DependencyInjectionExtension
     {
         services.AddRefitClient<ICtrlPlayClient>()
             .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://portal.ctrlplay.com.br/api/api/v1"));
-    }    
+    }
+
+    private static void AddOpenAi(IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddScoped<IGenerateReportAi, OpenRouterService>();
+
+        var apiKey = configuration.GetValue<string>("Settings:OpenAI:ApiKey");
+        var options = new OpenAIClientOptions
+        {
+            Endpoint = new Uri("https://openrouter.ai/api/v1")
+        };
+        var client = new ChatClient(ClassReportRuleConstants.ChatModel, new ApiKeyCredential(apiKey!), options);
+        
+        services.AddScoped(provider => client);
+    }
 }
