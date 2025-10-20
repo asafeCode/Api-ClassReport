@@ -4,7 +4,7 @@ using MyRecipeBook.Application.UseCases.CtrlPlay.TodayClasses;
 
 namespace MyRecipeBook.API.Controllers;
 
-public class ClassesTodayController : ClassReportControllerBase
+public class ClassesController : ClassReportControllerBase
 {
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]

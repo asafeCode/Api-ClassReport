@@ -1,8 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyRecipeBook.Application.UseCases.CtrlPlay.GenerateReport;
+using MyRecipeBook.Communication.Requests;
 
 namespace MyRecipeBook.API.Controllers;
 
 public class GenerateReportController :  ClassReportControllerBase
 {
-    
+    [HttpPost("/Generate-Report")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    public async Task<IActionResult> Login([FromServices] IGenerateReportUseCase useCase,
+        [FromBody] RequestClassId request)
+    {
+        var response = await  useCase.Execute(request);
+        return Ok(response);
+    }
 }

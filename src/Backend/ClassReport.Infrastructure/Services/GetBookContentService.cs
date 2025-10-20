@@ -1,5 +1,8 @@
 ﻿using System.Text.Json;
+using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services;
+using MyRecipeBook.Exceptions;
+using MyRecipeBook.Exceptions.ExceptionsBase;
 using MyRecipeBook.Infrastructure.Clients;
 
 namespace MyRecipeBook.Infrastructure.Services;
@@ -11,8 +14,13 @@ public class GetBookContentService :  IGetBookContent
     {
         _client = client;
     }
-    public Task<JsonDocument> GetBookContent(string accessToken, string bookId)
+    public async Task<JsonDocument> GetBookContent(string accessToken, string bookId)
     {
-        throw new NotImplementedException();
+        var response = await _client.GetBookContent(accessToken, bookId);
+        if (response.IsSuccessful.IsFalse()) 
+            throw new ExternalServiceException(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID);
+        
+        var responseData = await JsonDocument.ParseAsync(response.Content!);
+        return responseData;
     }
 }

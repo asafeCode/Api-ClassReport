@@ -10,7 +10,7 @@ namespace MyRecipeBook.Infrastructure;
 
 public static class DependencyInjectionExtension
 {
-    public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    public static void AddInfrastructure(this IServiceCollection services)
     {
         AddServices(services);
         AddRefit(services);
