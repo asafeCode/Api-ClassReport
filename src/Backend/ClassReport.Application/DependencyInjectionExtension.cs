@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using MyRecipeBook.Application.UseCases.CtrlPlay.GenerateReport;
 using MyRecipeBook.Application.UseCases.CtrlPlay.Login;
+using MyRecipeBook.Application.UseCases.CtrlPlay.TodayClasses;
 
 namespace MyRecipeBook.Application;
 
@@ -14,5 +16,7 @@ public static class DependencyInjectionExtension
     private static void AddUseCases(IServiceCollection services)
     {
         services.AddScoped<IGetAcessTokenUseCase, GetAccessTokenUseCase>();
+        services.AddScoped<IGenerateReportUseCase, GenerateReportUseCase>();
+        services.AddScoped<IGetTodayClassesUseCase, GetTodayClassesUseCase>();
     } 
 }
