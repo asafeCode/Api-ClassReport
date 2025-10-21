@@ -3,6 +3,7 @@ using Azure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MyRecipeBook.Domain.Services;
+using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Domain.Services.OpenAI;
 using MyRecipeBook.Domain.ValueModel;
 using MyRecipeBook.Infrastructure.Clients;

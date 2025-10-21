@@ -1,4 +1,4 @@
-﻿namespace MyRecipeBook.Domain.Dtos;
+﻿namespace MyRecipeBook.Domain.Dtos.Requests;
 
 public record RequestLoginDto
 {

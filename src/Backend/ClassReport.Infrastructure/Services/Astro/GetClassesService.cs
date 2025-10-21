@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services;
+using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 using MyRecipeBook.Infrastructure.Clients;
@@ -14,14 +15,14 @@ public class GetClassesService : IGetClasses
     {
         _client = client;
     }
-    public async Task<JsonDocument> GetClassesToday(string accessToken, string today, string statusClass = "IN_PROGRESS",
+    public async Task<ClassesResponseDto> GetClassesToday(string accessToken, string today, string statusClass = "IN_PROGRESS",
         string statusCode = "OPEN")
     {
         var response = await _client.GetClasses(accessToken, today);
         if (response.IsSuccessful.IsFalse()) 
             throw new ExternalServiceException(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID);
         
-        var responseData = await JsonDocument.ParseAsync(response.Content!);
-        return responseData;
+        
+        return response.Content!;
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System.Text.Json;
 using MyRecipeBook.Domain.Dtos;
+using MyRecipeBook.Domain.Dtos.Requests;
 using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services;
+using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 using MyRecipeBook.Infrastructure.Clients;

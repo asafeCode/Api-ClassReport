@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MyRecipeBook.Application.UseCases.CtrlPlay.GenerateReport;
-using MyRecipeBook.Application.UseCases.CtrlPlay.Login;
-using MyRecipeBook.Application.UseCases.CtrlPlay.TeacherInfo;
-using MyRecipeBook.Application.UseCases.CtrlPlay.TodayClasses;
+using MyRecipeBook.Application.UseCases.AstroPortal.GenerateReport;
+using MyRecipeBook.Application.UseCases.AstroPortal.Login;
+using MyRecipeBook.Application.UseCases.AstroPortal.TeacherInfo;
+using MyRecipeBook.Application.UseCases.AstroPortal.TodayClasses;
 
 namespace MyRecipeBook.Application;
 

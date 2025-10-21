@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyRecipeBook.Application.UseCases.CtrlPlay.GenerateReport;
+using MyRecipeBook.Application.UseCases.AstroPortal.GenerateReport;
 using MyRecipeBook.Communication.Requests;
 
 namespace MyRecipeBook.API.Controllers;

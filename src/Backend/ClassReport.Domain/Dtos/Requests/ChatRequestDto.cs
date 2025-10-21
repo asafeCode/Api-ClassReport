@@ -1,7 +1,7 @@
 ﻿using System.Text.Json.Serialization;
 using MyRecipeBook.Domain.ValueModel;
 
-namespace MyRecipeBook.Domain.Dtos;
+namespace MyRecipeBook.Domain.Dtos.Requests;
 
 public record ChatRequestDto
 { 

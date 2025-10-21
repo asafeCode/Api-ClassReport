@@ -2,5 +2,5 @@
 
 public static class ClassReportRuleConstants
 {
-    public const string ChatModel = "deepseek/deepseek-chat-v3-0324:free";
+    public const string ChatModel = "meituan/longcat-flash-chat:free";
 }

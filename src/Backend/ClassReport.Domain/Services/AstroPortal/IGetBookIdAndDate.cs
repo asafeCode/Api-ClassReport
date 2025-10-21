@@ -1,6 +1,6 @@
 ﻿using System.Text.Json;
 
-namespace MyRecipeBook.Domain.Services;
+namespace MyRecipeBook.Domain.Services.AstroPortal;
 
 public interface IGetBookIdAndDate
 {

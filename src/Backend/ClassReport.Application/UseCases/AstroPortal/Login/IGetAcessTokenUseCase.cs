@@ -1,7 +1,7 @@
 ﻿using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Communication.Responses;
 
-namespace MyRecipeBook.Application.UseCases.CtrlPlay.Login;
+namespace MyRecipeBook.Application.UseCases.AstroPortal.Login;
 
 public interface IGetAcessTokenUseCase
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using MyRecipeBook.Application.UseCases.CtrlPlay.TeacherInfo;
+using MyRecipeBook.Application.UseCases.AstroPortal.TeacherInfo;
 
 namespace MyRecipeBook.API.Controllers;
 

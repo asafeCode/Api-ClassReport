@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using MyRecipeBook.Application.UseCases.CtrlPlay.TodayClasses;
+using MyRecipeBook.Application.UseCases.AstroPortal.TodayClasses;
 
 namespace MyRecipeBook.API.Controllers;
 

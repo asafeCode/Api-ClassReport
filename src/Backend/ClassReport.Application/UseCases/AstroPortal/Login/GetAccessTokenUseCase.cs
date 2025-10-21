@@ -1,12 +1,12 @@
 ﻿using Mapster;
 using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Communication.Responses;
-using MyRecipeBook.Domain.Dtos;
+using MyRecipeBook.Domain.Dtos.Requests;
 using MyRecipeBook.Domain.Extensions;
-using MyRecipeBook.Domain.Services;
+using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 
-namespace MyRecipeBook.Application.UseCases.CtrlPlay.Login;
+namespace MyRecipeBook.Application.UseCases.AstroPortal.Login;
 
 public class GetAccessTokenUseCase : IGetAcessTokenUseCase
 {

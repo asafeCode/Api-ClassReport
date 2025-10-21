@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using MyRecipeBook.Domain.Dtos;
+using MyRecipeBook.Domain.Dtos.Requests;
 using MyRecipeBook.Domain.Dtos.Responses;
 using Refit;
 

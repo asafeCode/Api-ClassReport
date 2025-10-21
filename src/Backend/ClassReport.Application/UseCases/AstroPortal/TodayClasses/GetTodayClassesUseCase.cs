@@ -1,9 +1,8 @@
-﻿using System.Globalization;
-using System.Text.Json;
+﻿using System.Text.Json;
 using MyRecipeBook.Domain.Security.Tokens;
-using MyRecipeBook.Domain.Services;
+using MyRecipeBook.Domain.Services.AstroPortal;
 
-namespace MyRecipeBook.Application.UseCases.CtrlPlay.TodayClasses;
+namespace MyRecipeBook.Application.UseCases.AstroPortal.TodayClasses;
 
 public class GetTodayClassesUseCase :  IGetTodayClassesUseCase
 {
@@ -16,7 +15,7 @@ public class GetTodayClassesUseCase :  IGetTodayClassesUseCase
         _service = service;
     }
 
-    public async Task<JsonDocument> Execute()
+    public async Task<ClassesResponseDto> Execute()
     {
         var token = _token.Value();
         var today = DateTime.Today.ToString("dddd").ToUpper();

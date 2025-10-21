@@ -1,4 +1,6 @@
 ﻿using MyRecipeBook.Domain.Dtos;
+using MyRecipeBook.Domain.Dtos.Requests;
+using MyRecipeBook.Domain.Dtos.Responses;
 using Refit;
 
 namespace MyRecipeBook.Infrastructure.Clients;
@@ -9,10 +11,10 @@ public interface ICtrlPlayClient
     public Task<IApiResponse<Stream>> Login([Body] RequestLoginDto request);
     
     [Get("/users/me/")]
-    public Task<IApiResponse<Stream>> GetTeacherInfo([Header("Authorization")] string accessToken);
+    public Task<IApiResponse<TeacherResponseDto>> GetTeacherInfo([Header("Authorization")] string accessToken);
 
     [Get("/classes/")]
-    public Task<IApiResponse<Stream>> GetClasses([Header("Authorization")] string accessToken, [AliasAs("day_of_week")] string today,
+    public Task<IApiResponse<ClassesResponseDto>> GetClasses([Header("Authorization")] string accessToken, [AliasAs("day_of_week")] string today,
         [AliasAs("status")] string statusClass = "IN_PROGRESS", [AliasAs("status")] string statusCode = "OPEN");
 
     [Get("/scheduled-lessons/?is_active=true")]

@@ -1,9 +1,9 @@
 ﻿using System.Text.Json;
+using MyRecipeBook.Domain.Dtos.Requests;
 
 namespace MyRecipeBook.Domain.Services.OpenAI;
 
 public interface IGenerateReportAi
 {
-    Task<string> Generate(string lessonContent, string teacher, string lessonDate,
-        string lessonName);
+    Task<string> Generate(GenerateReportDto request);
 }

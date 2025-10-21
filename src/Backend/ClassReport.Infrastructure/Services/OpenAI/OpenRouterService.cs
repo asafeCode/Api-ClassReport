@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using Microsoft.Extensions.Configuration;
 using MyRecipeBook.Domain.Dtos;
+using MyRecipeBook.Domain.Dtos.Requests;
 using MyRecipeBook.Domain.Services.OpenAI;
 using MyRecipeBook.Infrastructure.Clients;
 
@@ -16,19 +17,19 @@ public class OpenRouterService : IGenerateReportAi
         _apiKey = configuration.GetValue<string>("Settings:OpenAI:ApiKey")!;
     }
 
-    public async Task<string> Generate(string lessonContent, string teacher, string lessonDate, string lessonName)
+    public async Task<string> Generate(GenerateReportDto request)
     {
          var prompt = $@"Faça um recado para os responsáveis dos meus alunos, a mensagem precisa ser formatada 
         para o whatsapp (se atente aos negritos, o whatsapp é um * em cada extremidade), precisa ser clara, 
         resumida e separada por tópicos, vou te passar os dados necessários para a mensagem ser enviada. 
 
-        Nome da Turma: {lessonName}
-        Data e Horário da Aula : {lessonDate}
-        Nome do Professor: {teacher}
+        Nome da Turma: {request.LessonName}
+        Data e Horário da Aula : {request.LessonDate}
+        Nome do Professor: {request.Teacher}
 
         Explicacao do Nome da Turma: 
         #id_turma(pode ignorar) - #Nome_Turma(MUITO IMPORTANTE, JÁ IREI PASSAR A LEGENDA) / #Mes_Inicio(pode ignorar) 
-        / #Dia_semana(pode ignorar) / #horario_aula(pode ignorar) / #Nome_Professor(MUITO IMPORTANTE)
+        / #Dia_semana(pode ignorar) / #horario_aula(pode ignorar) / #Nome_Professor(Pode Ignorar)
 
         LEGENDA DA VÁRIAVEL #Nome_Turma:
         C = Ctrl;
@@ -48,18 +49,15 @@ public class OpenRouterService : IGenerateReportAi
 
         📣 *Recado para os Responsáveis*
         📕 *Turma: #Nome_Turma*
-        📅 *Data: DD/MM/YYYY, às HHhMM (exemplo: 18h30)*
+        📅 *Data: DD/MM/YYYY, às HHhMM*
 
         Olá, tudo bem?
         Sou o Professor Nome_Professor | Ctrl+Play
-
-        Hoje tivemos mais uma aula com a Turma *Ctrl+Young 2*, onde aprofundamos nossos conhecimentos em *HTML* com foco na criação de páginas mais completas e interativas. 💻🌐
-
+        Hoje tivemos mais uma aula com a Turma *#Nome_Turma*, onde aprofundamos nossos conhecimentos em *HTML* com foco na criação de páginas mais completas e interativas. 💻🌐
         Confira abaixo os principais destaques da nossa aula:
 
         ✅ *Objetivo da aula*:
         • Avançar na estruturação de páginas web com HTML, aprendendo a criar *links*, *iframes*, *listas*, *tabelas* e utilizar *caracteres especiais*.
-
 
         🛠️ *O que fizemos hoje*:
         • Aprendemos a criar *links* entre páginas com a tag `<a>` e seus atributos `href` e `target`.
@@ -70,13 +68,11 @@ public class OpenRouterService : IGenerateReportAi
         • Estudamos como lidar com *caracteres especiais* usando entidades HTML, como `&lt;`, `&gt;` e `&amp;`.
         • Reforçamos a importância da tag `<meta charset=utf-8 />` para garantir a exibição correta dos acentos.
 
-
         💡 *Habilidades trabalhadas*:
         • Estruturação de páginas HTML com elementos mais complexos.
         • Navegação entre múltiplas páginas e organização de conteúdo.
         • Interpretação e depuração de códigos HTML.
         • Uso correto de entidades para exibir caracteres especiais.
-
 
         ✨ *Destaques da aula*:
         • A turma demonstrou bastante interesse na criação de tabelas e iframes.
@@ -89,17 +85,17 @@ public class OpenRouterService : IGenerateReportAi
         Qualquer dúvida, fico à disposição! 😊  
 
         Certifique se que sua resposta contenha apenas o modelo que passei, não quero nenhum comentário antes e nem depois!
-
-        Conteudo para o recado: {lessonContent}";
-        var request = new ChatRequestDto()
+        Conteudo para o recado: {request.LessonContent}";
+         
+        var requestChat = new ChatRequestDto()
         {
             Messages =
             [
                 new() { Role = "user", Content = prompt}
             ]
         };
-        var response = await _chatClient.Generate(_apiKey, request);
+        var response = await _chatClient.Generate(_apiKey, requestChat);
         
-        return response?.Choices?.FirstOrDefault()?.Message?.Content!;
+        return response.Choices.FirstOrDefault()!.Message.Content;
     }
 }

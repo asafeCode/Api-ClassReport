@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using MyRecipeBook.Application.UseCases.CtrlPlay.Login;
+using MyRecipeBook.Application.UseCases.AstroPortal.Login;
 using MyRecipeBook.Communication.Requests;
 
 namespace MyRecipeBook.API.Controllers;

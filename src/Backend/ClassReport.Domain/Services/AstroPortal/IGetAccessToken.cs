@@ -1,6 +1,6 @@
-﻿using MyRecipeBook.Domain.Dtos;
+﻿using MyRecipeBook.Domain.Dtos.Requests;
 
-namespace MyRecipeBook.Domain.Services;
+namespace MyRecipeBook.Domain.Services.AstroPortal;
 
 public interface IGetAccessToken
 {

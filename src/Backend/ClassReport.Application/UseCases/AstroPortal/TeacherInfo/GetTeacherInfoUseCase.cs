@@ -1,8 +1,9 @@
 ﻿using System.Text.Json;
+using MyRecipeBook.Domain.Dtos.Responses;
 using MyRecipeBook.Domain.Security.Tokens;
-using MyRecipeBook.Domain.Services;
+using MyRecipeBook.Domain.Services.AstroPortal;
 
-namespace MyRecipeBook.Application.UseCases.CtrlPlay.TeacherInfo;
+namespace MyRecipeBook.Application.UseCases.AstroPortal.TeacherInfo;
 
 public class GetTeacherInfoUseCase : IGetTeacherInfoUseCase
 {
@@ -14,7 +15,7 @@ public class GetTeacherInfoUseCase : IGetTeacherInfoUseCase
         _services = services;
         _token = token;
     }
-    public async Task<JsonDocument> Execute()
+    public async Task<TeacherResponseDto> Execute()
     {
         var token = _token.Value();
         var teacher = await _services.GetTeacherInfo(token);
