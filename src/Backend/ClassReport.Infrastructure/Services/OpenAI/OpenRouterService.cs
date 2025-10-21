@@ -53,7 +53,9 @@ public class OpenRouterService : IGenerateReportAi
 
         Olá, tudo bem?
         Sou o Professor Nome_Professor | Ctrl+Play
+
         Hoje tivemos mais uma aula com a Turma *#Nome_Turma*, onde aprofundamos nossos conhecimentos em *HTML* com foco na criação de páginas mais completas e interativas. 💻🌐
+        
         Confira abaixo os principais destaques da nossa aula:
 
         ✅ *Objetivo da aula*:
