@@ -15,7 +15,7 @@ public interface ICtrlPlayClient
 
     [Get("/classes/")]
     public Task<IApiResponse<ClassesResponseDto>> GetClasses([Header("Authorization")] string accessToken, [AliasAs("day_of_week")] string today,
-        [AliasAs("status")] string statusClass = "IN_PROGRESS", [AliasAs("status")] string statusCode = "OPEN");
+        [AliasAs("status")] string statusClass = "IN_PROGRESS");
 
     [Get("/scheduled-lessons/?is_active=true")]
     public Task<IApiResponse<Stream>> GetBookIdAndDate([Header("Authorization")] string accessToken,

@@ -15,8 +15,7 @@ public class GetClassesService : IGetClasses
     {
         _client = client;
     }
-    public async Task<ClassesResponseDto> GetClassesToday(string accessToken, string today, string statusClass = "IN_PROGRESS",
-        string statusCode = "OPEN")
+    public async Task<ClassesResponseDto> GetClassesToday(string accessToken, string today, string statusClass = "IN_PROGRESS")
     {
         var response = await _client.GetClasses(accessToken, today);
         if (response.IsSuccessful.IsFalse()) 
