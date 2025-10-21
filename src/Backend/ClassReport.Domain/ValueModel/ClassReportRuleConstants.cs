@@ -1,6 +1,6 @@
 ﻿namespace MyRecipeBook.Domain.ValueModel;
 
-public class ClassReportRuleConstants
+public static class ClassReportRuleConstants
 {
-    public const string ChatModel = "gpt-4o";
+    public const string ChatModel = "deepseek/deepseek-chat-v3-0324:free";
 }

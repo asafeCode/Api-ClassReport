@@ -5,18 +5,18 @@ using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 using MyRecipeBook.Infrastructure.Clients;
 
-namespace MyRecipeBook.Infrastructure.Services;
+namespace MyRecipeBook.Infrastructure.Services.Astro;
 
-public class GetBookIdAndDateService : IGetBookIdAndDate
+public class GetBookContentService :  IGetBookContent
 {
     private readonly ICtrlPlayClient _client;
-    public GetBookIdAndDateService(ICtrlPlayClient client)
+    public GetBookContentService(ICtrlPlayClient client)
     {
         _client = client;
     }
-    public async Task<JsonDocument> GetBookIdAndDate(string accessToken, string classId, string dateRangeBefore, string dateRangeAfter)
+    public async Task<JsonDocument> GetBookContent(string accessToken, string bookId)
     {
-        var response = await _client.GetBookIdAndDate(accessToken, classId, dateRangeBefore, dateRangeAfter);
+        var response = await _client.GetBookContent(accessToken, bookId);
         if (response.IsSuccessful.IsFalse()) 
             throw new ExternalServiceException(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID);
         

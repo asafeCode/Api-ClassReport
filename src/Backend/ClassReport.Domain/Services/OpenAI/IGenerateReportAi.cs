@@ -1,4 +1,6 @@
-﻿namespace MyRecipeBook.Domain.Services.OpenAI;
+﻿using System.Text.Json;
+
+namespace MyRecipeBook.Domain.Services.OpenAI;
 
 public interface IGenerateReportAi
 {

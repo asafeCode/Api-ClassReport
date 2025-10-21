@@ -6,7 +6,7 @@ using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
 using MyRecipeBook.Infrastructure.Clients;
 
-namespace MyRecipeBook.Infrastructure.Services;
+namespace MyRecipeBook.Infrastructure.Services.Astro;
 
 public class GetAccessTokenService : IGetAccessToken
 {

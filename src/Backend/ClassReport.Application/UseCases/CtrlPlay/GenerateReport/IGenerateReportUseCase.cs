@@ -5,5 +5,5 @@ namespace MyRecipeBook.Application.UseCases.CtrlPlay.GenerateReport;
 
 public interface IGenerateReportUseCase
 {
-    public Task<JsonDocument> Execute(RequestClassId request);
+    public Task<string> Execute(RequestClassId request);
 }

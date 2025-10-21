@@ -1,10 +1,8 @@
 ﻿using System.Text.Json;
-using System.Text.Json.Nodes;
-using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services;
 using MyRecipeBook.Infrastructure.Clients;
 
-namespace MyRecipeBook.Infrastructure.Services;
+namespace MyRecipeBook.Infrastructure.Services.Astro;
 
 public class GetTeacherInfoService :  IGetTeacherInfo
 {
