@@ -1,34 +1,37 @@
-trigger:
-- master
+name: Deploy API Image to Container Registry
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
 
-variables:
-  dockerRegistryServiceConnection: 'fadf9a3a-7eb8-43ff-8da1-85e5b3e22002'
-  imageRepository: 'lessonreport-backend'
-  containerRegistry: 'lessonreport.azurecr.io'
-  dockerfilePath: 'Dockerfile'
-  tag: '$(Build.BuildId)'
+env:
+  REGISTRY: ${{ secrets.REGISTRY_NAME }}
+  IMAGE_NAME: lessonreport-api
 
-pool:
-  vmImage: 'ubuntu-latest'
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-steps:
+      - name: Login to Azure Container Registry
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.REGISTRY }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
 
-- task: DownloadSecureFile@1
-  displayName: Download appsettings.json
-  name: appsettings
-  inputs:
-    secureFile: 'appsettings.Production.json'
+      - name: Create appsettings.Production.json file
+        run: |
+          mkdir -p src/Backend/ClassReport.API
+          printf "%s" "${{ secrets.APPSETTINGS_PRODUCTION }}" > src/Backend/ClassReport.API/appsettings.Production.json
 
-- script: |
-    cp $(appsettings.secureFilePath) src/Backend/ClassReport.API
-
-- task: Docker@2
-  displayName: Build and push an image to container registry
-  inputs:
-    command: buildAndPush
-    repository: $(imageRepository)
-    dockerfile: $(dockerfilePath)
-    containerRegistry: $(dockerRegistryServiceConnection)
-    tags: |
-      latest
-      $(tag)
+      - name: Build and push Docker images with tags
+        run: |
+          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+                       -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_id }} .
+          
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.run_id }}
