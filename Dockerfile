@@ -8,6 +8,8 @@ WORKDIR /app/Backend/ClassReport.API
 RUN dotnet restore
 RUN dotnet publish -c Release -o /app/out
 
+RUN cp appsettings.Production.json /app/out/
+
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 
