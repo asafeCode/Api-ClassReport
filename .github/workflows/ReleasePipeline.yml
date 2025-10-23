@@ -25,8 +25,8 @@ jobs:
 
       - name: Create appsettings.Production.json file
         run: |
-          mkdir -p src/Backend/ClassReport.API
-          printf "%s" "${{ secrets.APPSETTINGS_PRODUCTION }}" > src/Backend/ClassReport.API/appsettings.Production.json
+          cd src/Backend/ClassReport.API
+          echo "${{ secrets.APPSETTINGS_PRODUCTION_BASE64 }}" | base64 --decode > appsettings.Production.json
 
       - name: Build and push Docker images with tags
         run: |
