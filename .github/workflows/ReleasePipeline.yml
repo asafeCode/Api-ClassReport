@@ -2,7 +2,7 @@ name: Deploy API Image to Container Registry
 on:
   push:
     branches:
-      - master
+      - develop
   workflow_dispatch:
 
 env:
