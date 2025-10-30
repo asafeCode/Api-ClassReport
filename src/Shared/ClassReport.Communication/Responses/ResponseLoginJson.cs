@@ -2,5 +2,5 @@
 
 public class ResponseLoginJson
 {
-    public string AccessToken { get; set; } =  string.Empty;
+    public string Access { get; set; } = string.Empty;
 }

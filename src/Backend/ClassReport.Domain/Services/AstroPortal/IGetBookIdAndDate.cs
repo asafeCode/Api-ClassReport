@@ -1,9 +1,11 @@
 ﻿using System.Text.Json;
+using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.BookId;
 
 namespace MyRecipeBook.Domain.Services.AstroPortal;
 
 public interface IGetBookIdAndDate
 {
-    public Task<JsonDocument> GetBookIdAndDate (string accessToken, string classId,  string dateRangeBefore, 
+    public Task<ScheduledLessonsResponseDto> GetBookIdAndDate (string accessToken, string classId,  string dateRangeBefore, 
          string dateRangeAfter);
 }

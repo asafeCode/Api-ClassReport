@@ -1,8 +1,10 @@
 ﻿using MyRecipeBook.Domain.Dtos.Requests;
+using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.Login;
 
 namespace MyRecipeBook.Domain.Services.AstroPortal;
 
 public interface IGetAccessToken
 {
-    Task<string> GetAccessToken(RequestLoginDto request);
+    Task<TokenReponseDto> GetAccessToken(RequestLoginDto request);
 }

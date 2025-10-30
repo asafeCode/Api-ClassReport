@@ -1,7 +1,5 @@
-﻿using System.Text.Json;
-using MyRecipeBook.Domain.Dtos.Responses;
+﻿using MyRecipeBook.Domain.Dtos.Responses.Classes;
 using MyRecipeBook.Domain.Extensions;
-using MyRecipeBook.Domain.Services;
 using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
@@ -20,8 +18,10 @@ public class GetClassesService : IGetClasses
     {
         var response = await _client.GetClasses(accessToken, today);
         if (response.IsSuccessful.IsFalse()) 
-            throw new ExternalServiceException(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID);
-        
+            throw new ExternalServiceException(ResourceMessagesException.NO_TOKEN);
+
+        if (response.Content!.Results.Count <= 0)
+            throw new NotFoundException(ResourceMessagesException.NO_CLASSES_TODAY);
         
         return response.Content!;
     }

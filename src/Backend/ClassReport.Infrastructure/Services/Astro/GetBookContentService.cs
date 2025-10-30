@@ -1,4 +1,6 @@
 ﻿using System.Text.Json;
+using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.BookContent;
 using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services;
 using MyRecipeBook.Domain.Services.AstroPortal;
@@ -15,13 +17,12 @@ public class GetBookContentService :  IGetBookContent
     {
         _client = client;
     }
-    public async Task<JsonDocument> GetBookContent(string accessToken, string bookId)
+    public async Task<BookResponseDto> GetBookContent(string accessToken, string bookId)
     {
         var response = await _client.GetBookContent(accessToken, bookId);
         if (response.IsSuccessful.IsFalse()) 
-            throw new ExternalServiceException(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID);
-        
-        var responseData = await JsonDocument.ParseAsync(response.Content!);
-        return responseData;
+            throw new ExternalServiceException(ResourceMessagesException.NO_TOKEN);
+
+        return response.Content!;
     }
 }

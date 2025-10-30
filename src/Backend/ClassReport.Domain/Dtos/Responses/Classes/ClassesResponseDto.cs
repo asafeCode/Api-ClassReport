@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace MyRecipeBook.Domain.Dtos.Responses;
+namespace MyRecipeBook.Domain.Dtos.Responses.Classes;
 
 public class ClassesResponseDto
 {

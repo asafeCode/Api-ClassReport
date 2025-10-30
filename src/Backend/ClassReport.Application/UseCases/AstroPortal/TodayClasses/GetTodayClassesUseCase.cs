@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.Classes;
 using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services.AstroPortal;
 

@@ -1,4 +1,7 @@
-﻿namespace MyRecipeBook.Domain.Dtos.Requests;
+﻿using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.BookContent;
+
+namespace MyRecipeBook.Domain.Dtos.Requests;
 
 public record GenerateReportDto
 {

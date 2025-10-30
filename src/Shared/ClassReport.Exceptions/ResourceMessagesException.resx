@@ -216,4 +216,10 @@
   <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
     <value>You can't access this resource.</value>
   </data>
+  <data name="NO_CLASSES_TODAY" xml:space="preserve">
+    <value>Do not have classes today.</value>
+  </data>
+  <data name="BOOK_NOT_FOUND" xml:space="preserve">
+    <value>Book Not Found.</value>
+  </data>
 </root>
