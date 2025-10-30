@@ -2,7 +2,10 @@
 using Microsoft.Extensions.Configuration;
 using MyRecipeBook.Domain.Dtos;
 using MyRecipeBook.Domain.Dtos.Requests;
+using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services.OpenAI;
+using MyRecipeBook.Exceptions;
+using MyRecipeBook.Exceptions.ExceptionsBase;
 using MyRecipeBook.Infrastructure.Clients;
 
 namespace MyRecipeBook.Infrastructure.Services.OpenAI;
@@ -29,7 +32,9 @@ public class OpenRouterService : IGenerateReportAi
         };
         
         var response = await _chatClient.Generate(_apiKey, requestChat);
-        
-        return response.Choices.FirstOrDefault()!.Message.Content;
+        if (response.IsSuccessStatusCode.IsFalse())
+            throw new ExternalServiceException(ResourceMessagesException.IA_SERVICE_NOT_WORKING);
+                
+        return response.Content!.Choices.FirstOrDefault()!.Message.Content;
     }
 }

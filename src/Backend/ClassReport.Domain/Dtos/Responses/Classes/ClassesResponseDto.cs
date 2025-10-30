@@ -2,7 +2,7 @@
 
 namespace MyRecipeBook.Domain.Dtos.Responses.Classes;
 
-public class ClassesResponseDto
+public record ClassesResponseDto
 {
     [JsonPropertyName("results")] 
     public List<ClassDto> Results { get; set; } = [];

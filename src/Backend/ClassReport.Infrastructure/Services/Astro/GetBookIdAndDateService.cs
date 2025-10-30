@@ -26,7 +26,7 @@ public class GetBookIdAndDateService : IGetBookIdAndDate
         if (response.Content?.Results == null || response.Content.Results.Count == 0)
             throw new NotFoundException(ResourceMessagesException.BOOK_NOT_FOUND);
 
-        if (response.Content.Results[0].Lesson.Book is null)
+        if (response.Content.Results[0].Lesson!.Book is null)
             throw new NotFoundException(ResourceMessagesException.BOOK_NOT_FOUND);
         
         return response.Content!;

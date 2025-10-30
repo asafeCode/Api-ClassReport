@@ -2,8 +2,8 @@
 
 namespace MyRecipeBook.Domain.Dtos.Responses.AiServices;
 
-public class ChatCompletionResponse
+public record ChatCompletionResponse
 {
-    [JsonPropertyName("choices")] 
+    [JsonPropertyName("choices")]
     public List<Choice> Choices { get; set; } = [];
 }

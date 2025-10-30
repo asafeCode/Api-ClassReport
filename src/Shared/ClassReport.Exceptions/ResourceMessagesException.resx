@@ -222,4 +222,7 @@
   <data name="BOOK_NOT_FOUND" xml:space="preserve">
     <value>Book Not Found.</value>
   </data>
+  <data name="IA_SERVICE_NOT_WORKING" xml:space="preserve">
+    <value>Sorry, the AI Service is unavailable.</value>
+  </data>
 </root>

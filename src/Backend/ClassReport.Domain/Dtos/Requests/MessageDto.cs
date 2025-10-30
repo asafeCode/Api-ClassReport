@@ -2,11 +2,11 @@
 
 namespace MyRecipeBook.Domain.Dtos.Requests;
 
-public class MessageDto
+public record MessageDto
 {
     [JsonPropertyName("role")]
     public string Role { get; set; } = string.Empty;
     
     [JsonPropertyName("content")]
-    public string Content { get; set; } =  string.Empty;
+    public string Content { get; init; } =  string.Empty;
 }

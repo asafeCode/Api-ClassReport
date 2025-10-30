@@ -3,8 +3,8 @@ using MyRecipeBook.Domain.Dtos.Requests;
 
 namespace MyRecipeBook.Domain.Dtos.Responses.AiServices;
 
-public class Choice
+public record Choice
 {
     [JsonPropertyName("message")] 
-    public MessageDto Message { get; set; }
+    public MessageDto? Message { get; set; }
 }

@@ -10,5 +10,5 @@ namespace MyRecipeBook.Infrastructure.Clients;
 public interface IOpenRouterClient
 {
     [Post("/chat/completions")]
-    Task<ChatCompletionResponse> Generate([Header("Authorization")] string apiKey, [Body] ChatRequestDto request);
+    Task<IApiResponse<ChatCompletionResponse>> Generate([Header("Authorization")] string apiKey, [Body] ChatRequestDto request);
 }

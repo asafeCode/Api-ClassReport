@@ -2,7 +2,7 @@
 
 namespace MyRecipeBook.Domain.Dtos.Responses.Login;
 
-public class TokenReponseDto
+public record TokenReponseDto
 {
     [JsonPropertyName("access")] 
     public string Access { get; set; } = string.Empty;

@@ -1,5 +1,4 @@
 ﻿using MyRecipeBook.Domain.Dtos.Requests;
-using MyRecipeBook.Domain.Dtos.Responses;
 using MyRecipeBook.Domain.Dtos.Responses.Login;
 using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services.AstroPortal;

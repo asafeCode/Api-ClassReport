@@ -2,7 +2,7 @@
 
 namespace MyRecipeBook.Domain.Dtos.Responses.Classes;
 
-public class ClassDto
+public record ClassDto
 {
     [JsonPropertyName("id")] 
     public int? Id { get; set; }

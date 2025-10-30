@@ -5,13 +5,13 @@ namespace MyRecipeBook.Infrastructure.Extensions;
 
 public static class ConfigurationExtension
 {
-    public static bool IsUnitTestEnvironment(this IConfiguration configuration)
+    public static string OpenRouterClientUrl(this IConfiguration configuration)
     {
-        return configuration.GetValue<bool>("InMemoryTest");
+        return configuration.GetValue<string>("Settings:Urls:OpenRouter")!;
         
     }
-    public static string ConnectionString(this IConfiguration configuration)
+    public static string AstroPortalClientUrl(this IConfiguration configuration)
     {
-        return configuration.GetConnectionString("ConnectionSqlServer")!;
+        return configuration.GetValue<string>("Settings:Urls:AstroPortal")!;
     } 
 }

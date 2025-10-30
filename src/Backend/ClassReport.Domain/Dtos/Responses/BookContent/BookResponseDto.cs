@@ -2,7 +2,7 @@
 
 namespace MyRecipeBook.Domain.Dtos.Responses.BookContent;
 
-public class BookResponseDto
+public record BookResponseDto
 {
     [JsonPropertyName("chapters")]
     public List<ChapterDto>? Chapters { get; set; }

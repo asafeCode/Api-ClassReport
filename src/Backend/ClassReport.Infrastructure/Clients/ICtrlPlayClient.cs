@@ -1,7 +1,4 @@
-﻿using System.Text.Json;
-using MyRecipeBook.Domain.Dtos;
-using MyRecipeBook.Domain.Dtos.Requests;
-using MyRecipeBook.Domain.Dtos.Responses;
+﻿using MyRecipeBook.Domain.Dtos.Requests;
 using MyRecipeBook.Domain.Dtos.Responses.BookContent;
 using MyRecipeBook.Domain.Dtos.Responses.BookId;
 using MyRecipeBook.Domain.Dtos.Responses.Classes;

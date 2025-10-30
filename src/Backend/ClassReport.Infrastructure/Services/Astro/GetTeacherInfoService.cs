@@ -1,13 +1,9 @@
 ﻿using System.Runtime.InteropServices;
-using System.Text.Json;
-using MyRecipeBook.Domain.Dtos.Responses;
 using MyRecipeBook.Domain.Dtos.Responses.Teacher;
 using MyRecipeBook.Domain.Extensions;
-using MyRecipeBook.Domain.Services;
 using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Exceptions;
 using MyRecipeBook.Infrastructure.Clients;
-using Refit;
 
 namespace MyRecipeBook.Infrastructure.Services.Astro;
 

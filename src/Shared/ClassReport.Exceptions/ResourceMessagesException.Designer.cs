@@ -204,6 +204,15 @@ namespace MyRecipeBook.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, the AI Service is unavailable..
+        /// </summary>
+        public static string IA_SERVICE_NOT_WORKING {
+            get {
+                return ResourceManager.GetString("IA_SERVICE_NOT_WORKING", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The ingredient is left empty, please provide a valid value..
         /// </summary>
         public static string INGREDIENT_EMPTY {

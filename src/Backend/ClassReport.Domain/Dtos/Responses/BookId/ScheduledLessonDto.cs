@@ -2,7 +2,7 @@
 
 namespace MyRecipeBook.Domain.Dtos.Responses.BookId;
 
-public class ScheduledLessonDto
+public record ScheduledLessonDto
 {
     [JsonPropertyName("lesson")] 
     public LessonDto? Lesson { get; set; }
@@ -13,12 +13,12 @@ public class ScheduledLessonDto
     [JsonPropertyName("is_active")] 
     public bool IsActive { get; set; }
 }
-public class LessonDto
+public record LessonDto
 {
     [JsonPropertyName("book")] 
     public BookDto? Book { get; set; }
 }
-public class BookDto
+public record BookDto
 {
     [JsonPropertyName("id")] 
     public int? Id { get; set; }

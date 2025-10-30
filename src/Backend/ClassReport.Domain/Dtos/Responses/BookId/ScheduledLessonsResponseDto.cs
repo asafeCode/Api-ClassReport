@@ -2,7 +2,7 @@
 
 namespace MyRecipeBook.Domain.Dtos.Responses.BookId
 {
-    public class ScheduledLessonsResponseDto
+    public record ScheduledLessonsResponseDto
     {
         [JsonPropertyName("results")] 
         public List<ScheduledLessonDto>? Results { get; set; } = [];

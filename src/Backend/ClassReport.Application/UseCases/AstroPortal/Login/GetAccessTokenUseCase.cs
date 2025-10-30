@@ -30,10 +30,10 @@ public class GetAccessTokenUseCase : IGetAcessTokenUseCase
     {
         var validator = new GetAccessTokenValidator();
         var result = validator.Validate(request);
-        if (result.IsValid.IsFalse())
-        {
-            var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
-            throw new ErrorOnValidationException(errorMessages);
-        }
+        if (result.IsValid)
+            return;
+        
+        var errorMessage = result.Errors.FirstOrDefault()?.ErrorMessage;
+        throw new ErrorOnValidationException(new List<string>() { errorMessage! });
     }
 }

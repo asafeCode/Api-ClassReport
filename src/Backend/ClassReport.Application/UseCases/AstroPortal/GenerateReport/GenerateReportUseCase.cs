@@ -1,7 +1,5 @@
-﻿using System.Text.Json;
-using MyRecipeBook.Communication.Requests;
+﻿using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Domain.Dtos.Requests;
-using MyRecipeBook.Domain.Dtos.Responses.BookId;
 using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Domain.Services.OpenAI;
@@ -16,10 +14,13 @@ public class GenerateReportUseCase :  IGenerateReportUseCase
     private readonly IGenerateReportAi _aiService;
     private readonly IGetClasses _classService;
     private readonly IGetTeacherInfo _teacherService;
-    public GenerateReportUseCase(ITokenProvider token, 
+    public GenerateReportUseCase(
+        ITokenProvider token, 
         IGetBookIdAndDate bookServiceId, 
         IGetBookContent bookServiceContent, 
-        IGenerateReportAi aiService, IGetClasses classService, IGetTeacherInfo teacherService)
+        IGenerateReportAi aiService, 
+        IGetClasses classService, 
+        IGetTeacherInfo teacherService)
     {
         _token = token;
         _bookServiceId = bookServiceId;

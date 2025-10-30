@@ -7,6 +7,7 @@ using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Domain.Services.OpenAI;
 using MyRecipeBook.Domain.ValueModel;
 using MyRecipeBook.Infrastructure.Clients;
+using MyRecipeBook.Infrastructure.Extensions;
 using MyRecipeBook.Infrastructure.Services;
 using MyRecipeBook.Infrastructure.Services.Astro;
 using MyRecipeBook.Infrastructure.Services.OpenAI;
@@ -21,8 +22,8 @@ public static class DependencyInjectionExtension
     public static void AddInfrastructure(this IServiceCollection services,  IConfiguration configuration)
     {
         AddServices(services);
-        AddClients(services);
-        AddOpenAi(services, configuration);
+        AddClients(services, configuration);
+        AddOpenAi(services);
     }
 
     private static void AddServices(IServiceCollection services)
@@ -33,15 +34,17 @@ public static class DependencyInjectionExtension
         services.AddScoped<IGetClasses, GetClassesService>();
         services.AddScoped<IGetTeacherInfo, GetTeacherInfoService>();
     }    
-    private static void AddClients(IServiceCollection services)
+    private static void AddClients(IServiceCollection services,  IConfiguration configuration)
     {
         services.AddRefitClient<ICtrlPlayClient>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://portal.ctrlplay.com.br/api/api/v1"));
+            .ConfigureHttpClient(c => c.BaseAddress = 
+                new Uri(configuration.AstroPortalClientUrl()));
 
         services.AddRefitClient<IOpenRouterClient>()
-            .ConfigureHttpClient(c => c.BaseAddress = new Uri("https://openrouter.ai/api/v1"));
+            .ConfigureHttpClient(c => c.BaseAddress = 
+                new Uri(configuration.OpenRouterClientUrl()));
     }
-    private static void AddOpenAi(IServiceCollection services, IConfiguration configuration)
+    private static void AddOpenAi(IServiceCollection services)
     {
         services.AddScoped<IGenerateReportAi, OpenRouterService>();
     }
