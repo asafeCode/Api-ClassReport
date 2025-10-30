@@ -1,6 +1,7 @@
 ﻿using System.Text.Json;
 using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Domain.Dtos.Requests;
+using MyRecipeBook.Domain.Dtos.Responses.BookId;
 using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Domain.Services.OpenAI;
@@ -34,36 +35,19 @@ public class GenerateReportUseCase :  IGenerateReportUseCase
         var dateToday = DateTime.Today.ToString("yyyy-MM-dd");
         var today = DateTime.Today.ToString("dddd").ToUpper();
         
-        var book = await _bookServiceId.GetBookIdAndDate(accessToken, classId, dateToday, dateToday);
         var classes = await _classService.GetClassesToday(accessToken, today);
         var className = classes.Results.First(result => result.Id.ToString() == classId).Name;
         
-        
         var teacher = await _teacherService.GetTeacherInfo(accessToken);
         var teacherName = teacher.FirstName + " " + teacher.LastName;
+
+        var book = await _bookServiceId.GetBookIdAndDate(accessToken, classId, dateToday, dateToday);
+        var bookId = book.Results[0].Lesson.Book.Id.ToString();
+        var lessonDate = book.Results[0].DateTime;
+
+        var bookResponse = await _bookServiceContent.GetBookContent(accessToken, bookId!);
+        var lessonContent = bookResponse.Chapters!.Aggregate("", (current, item) => current + item.Content);
         
-        
-        var resultsProperty = book.RootElement.GetProperty("results");
-        if (resultsProperty.ValueKind != JsonValueKind.Array || resultsProperty.GetArrayLength() == 0)
-        {
-            // Handle missing or empty results, e.g. throw a custom exception or return a meaningful message
-            throw new InvalidOperationException("The 'results' array is missing or empty.");
-        }
-
-        var firstResult = resultsProperty[0];
-
-        var bookId = firstResult
-            .GetProperty("lesson")
-            .GetProperty("book")
-            .GetProperty("id").ToString();
-
-        var lessonDate = firstResult
-            .GetProperty("datetime").ToString();
-        
-        var response = await _bookServiceContent.GetBookContent(accessToken, bookId);
-
-        var lessonContent = response.RootElement.ToString();
-
         var requestReport = new GenerateReportDto
         {
             LessonContent = lessonContent,

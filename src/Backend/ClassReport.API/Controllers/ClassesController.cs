@@ -1,9 +1,10 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using MyRecipeBook.API.Attributes;
 using MyRecipeBook.Application.UseCases.AstroPortal.TodayClasses;
 
 namespace MyRecipeBook.API.Controllers;
 
+[AuthenticatedUser]
 public class ClassesController : ClassReportControllerBase
 {
     [HttpGet]

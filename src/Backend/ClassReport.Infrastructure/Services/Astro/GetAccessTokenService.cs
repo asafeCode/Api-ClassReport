@@ -1,8 +1,7 @@
-﻿using System.Text.Json;
-using MyRecipeBook.Domain.Dtos;
-using MyRecipeBook.Domain.Dtos.Requests;
+﻿using MyRecipeBook.Domain.Dtos.Requests;
+using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.Login;
 using MyRecipeBook.Domain.Extensions;
-using MyRecipeBook.Domain.Services;
 using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Exceptions;
 using MyRecipeBook.Exceptions.ExceptionsBase;
@@ -17,12 +16,11 @@ public class GetAccessTokenService : IGetAccessToken
     {
         _client = client;
     }
-    public async Task<string> GetAccessToken(RequestLoginDto request)
+    public async Task<TokenReponseDto> GetAccessToken(RequestLoginDto request)
     {
         var response = await _client.Login(request);
-        if (response.IsSuccessful.IsFalse()) throw new ExternalServiceException(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID);
-        var responseData = await JsonDocument.ParseAsync(response.Content!);
-        var accessToken = responseData.RootElement.GetProperty("access").GetString();
-        return accessToken!;
+        if (response.IsSuccessful.IsFalse()) 
+            throw new ExternalServiceException(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID);
+        return response.Content!;
     }
 }

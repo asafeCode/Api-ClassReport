@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyRecipeBook.API.Attributes;
 using MyRecipeBook.Application.UseCases.AstroPortal.TeacherInfo;
 
 namespace MyRecipeBook.API.Controllers;
 
+[AuthenticatedUser]
 public class TeacherController : ClassReportControllerBase
 {
     [HttpGet]

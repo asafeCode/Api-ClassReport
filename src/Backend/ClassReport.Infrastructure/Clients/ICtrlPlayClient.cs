@@ -2,6 +2,11 @@
 using MyRecipeBook.Domain.Dtos;
 using MyRecipeBook.Domain.Dtos.Requests;
 using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.BookContent;
+using MyRecipeBook.Domain.Dtos.Responses.BookId;
+using MyRecipeBook.Domain.Dtos.Responses.Classes;
+using MyRecipeBook.Domain.Dtos.Responses.Login;
+using MyRecipeBook.Domain.Dtos.Responses.Teacher;
 using Refit;
 
 namespace MyRecipeBook.Infrastructure.Clients;
@@ -9,7 +14,7 @@ namespace MyRecipeBook.Infrastructure.Clients;
 public interface ICtrlPlayClient
 {
     [Post("/auth/token/")]
-    public Task<IApiResponse<Stream>> Login([Body] RequestLoginDto request);
+    public Task<IApiResponse<TokenReponseDto>> Login([Body] RequestLoginDto request);
     
     [Get("/users/me/")]
     public Task<IApiResponse<TeacherResponseDto>> GetTeacherInfo([Header("Authorization")] string accessToken);
@@ -19,10 +24,10 @@ public interface ICtrlPlayClient
         [AliasAs("status")] string statusClass = "IN_PROGRESS");
 
     [Get("/scheduled-lessons/?is_active=true")]
-    public Task<IApiResponse<Stream>> GetBookIdAndDate([Header("Authorization")] string accessToken,
+    public Task<IApiResponse<ScheduledLessonsResponseDto>> GetBookIdAndDate([Header("Authorization")] string accessToken,
         [AliasAs("klass_id")] string classId, [AliasAs("date_range_before")] string dateRangeBefore, 
         [AliasAs("date_range_after")] string dateRangeAfter);
     
     [Get("/books/{bookId}/")]
-    public Task<IApiResponse<Stream>> GetBookContent([Header("Authorization")] string accessToken, string bookId);
+    public Task<IApiResponse<BookResponseDto>> GetBookContent([Header("Authorization")] string accessToken, string bookId);
 }

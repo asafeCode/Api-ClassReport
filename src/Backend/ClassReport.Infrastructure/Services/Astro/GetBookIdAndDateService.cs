@@ -1,4 +1,6 @@
 ﻿using System.Text.Json;
+using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.BookId;
 using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services;
 using MyRecipeBook.Domain.Services.AstroPortal;
@@ -15,13 +17,18 @@ public class GetBookIdAndDateService : IGetBookIdAndDate
     {
         _client = client;
     }
-    public async Task<JsonDocument> GetBookIdAndDate(string accessToken, string classId, string dateRangeBefore, string dateRangeAfter)
+    public async Task<ScheduledLessonsResponseDto> GetBookIdAndDate(string accessToken, string classId, string dateRangeBefore, string dateRangeAfter)
     {
         var response = await _client.GetBookIdAndDate(accessToken, classId, dateRangeBefore, dateRangeAfter);
         if (response.IsSuccessful.IsFalse()) 
-            throw new ExternalServiceException(ResourceMessagesException.EMAIL_OR_PASSWORD_INVALID);
+            throw new ExternalServiceException(ResourceMessagesException.NO_TOKEN);
+
+        if (response.Content?.Results == null || response.Content.Results.Count == 0)
+            throw new NotFoundException(ResourceMessagesException.BOOK_NOT_FOUND);
+
+        if (response.Content.Results[0].Lesson.Book is null)
+            throw new NotFoundException(ResourceMessagesException.BOOK_NOT_FOUND);
         
-        var responseData = await JsonDocument.ParseAsync(response.Content!);
-        return responseData;
+        return response.Content!;
     }
 }

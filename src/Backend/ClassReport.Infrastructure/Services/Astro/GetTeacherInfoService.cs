@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 using System.Text.Json;
 using MyRecipeBook.Domain.Dtos.Responses;
+using MyRecipeBook.Domain.Dtos.Responses.Teacher;
 using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Services;
 using MyRecipeBook.Domain.Services.AstroPortal;
@@ -20,8 +21,9 @@ public class GetTeacherInfoService :  IGetTeacherInfo
     public async Task<TeacherResponseDto> GetTeacherInfo(string accessToken)
     {
         var response = await _client.GetTeacherInfo(accessToken);
-        if (response.IsSuccessStatusCode.IsFalse()) throw new ExternalException(ResourceMessagesException.NO_TOKEN);
-        var responseContent = response.Content!;
-        return responseContent;
+        if (response.IsSuccessStatusCode.IsFalse()) 
+            throw new ExternalException(ResourceMessagesException.NO_TOKEN);
+        
+        return response.Content!;
     }
 }

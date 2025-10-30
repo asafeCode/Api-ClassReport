@@ -1,8 +1,6 @@
-﻿namespace MyRecipeBook.Domain.Dtos.Responses;
+﻿using System.Text.Json.Serialization;
 
-using System;
-using System.Collections.Generic;
-using System.Text.Json.Serialization;
+namespace MyRecipeBook.Domain.Dtos.Responses.Teacher;
 
 public class TeacherResponseDto
 {

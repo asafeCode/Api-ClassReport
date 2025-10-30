@@ -21,12 +21,9 @@ public class GetAccessTokenUseCase : IGetAcessTokenUseCase
     {
         Validate(request);
         var requestDto = request.Adapt<RequestLoginDto>();
-        var accessToken = await _loginService.GetAccessToken(requestDto);
+        var responseToken = await _loginService.GetAccessToken(requestDto);
         
-        return new ResponseLoginJson
-        {
-            AccessToken = accessToken
-        };
+        return responseToken.Adapt<ResponseLoginJson>();
     }
 
     private static void Validate(RequestLoginJson request)
