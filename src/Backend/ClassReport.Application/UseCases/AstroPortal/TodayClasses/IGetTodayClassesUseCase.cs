@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using MyRecipeBook.Domain.Dtos.Responses;
 
 namespace MyRecipeBook.Application.UseCases.AstroPortal.TodayClasses;
 
