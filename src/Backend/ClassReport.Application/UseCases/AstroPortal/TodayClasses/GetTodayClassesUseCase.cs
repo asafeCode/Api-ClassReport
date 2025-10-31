@@ -1,6 +1,5 @@
-﻿using System.Text.Json;
-using MyRecipeBook.Domain.Dtos.Responses;
-using MyRecipeBook.Domain.Dtos.Responses.Classes;
+﻿using MyRecipeBook.Domain.Dtos.Responses.Classes;
+using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services.AstroPortal;
 
@@ -20,7 +19,8 @@ public class GetTodayClassesUseCase :  IGetTodayClassesUseCase
     public async Task<ClassesResponseDto> Execute()
     {
         var token = _token.Value();
-        var today = DateTime.Today.ToString("dddd").ToUpper();
+        var brasiliaNow = DateTimeInTimeZone.Brasilia();
+        var today = brasiliaNow.DayToday();
         var classes = await _service.GetClassesToday(token, today);
 
         return classes;
