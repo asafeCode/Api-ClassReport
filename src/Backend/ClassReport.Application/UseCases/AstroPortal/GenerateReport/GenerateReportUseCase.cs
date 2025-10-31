@@ -1,5 +1,6 @@
 ﻿using MyRecipeBook.Communication.Requests;
 using MyRecipeBook.Domain.Dtos.Requests;
+using MyRecipeBook.Domain.Extensions;
 using MyRecipeBook.Domain.Security.Tokens;
 using MyRecipeBook.Domain.Services.AstroPortal;
 using MyRecipeBook.Domain.Services.OpenAI;
@@ -33,8 +34,10 @@ public class GenerateReportUseCase :  IGenerateReportUseCase
     {
         var classId = request.ClassId;
         var accessToken = _token.Value();
-        var dateToday = DateTime.Today.ToString("yyyy-MM-dd");
-        var today = DateTime.Today.ToString("dddd").ToUpper();
+
+        var date = DateTimeInTimeZone.Brasilia();
+        var today = date.DayToday();
+        var dateToday = date.DateToday();
         
         var classes = await _classService.GetClassesToday(accessToken, today);
         var className = classes.Results.First(result => result.Id.ToString() == classId).Name;
