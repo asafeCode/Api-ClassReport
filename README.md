@@ -1,92 +1,43 @@
-# 🚀 Template para Criação de API's REST em .NET 8
+# Api-ClassReport
 
-[![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?logo=dotnet\&logoColor=white)](https://dotnet.microsoft.com/)
-[![Build](https://github.com/asafeCode/Api-Template/actions/workflows/BuildWithSonarCloud.yml/badge.svg)](https://github.com//asafeCode/Api-Template/actions)
-[![Docker](https://img.shields.io/badge/docker-ready-blue?logo=docker\&logoColor=white)](https://www.docker.com/)
-[![License](https://img.shields.io/badge/license-MIT-green)](#license)
+API backend responsável pela **geração automática de recados para responsáveis**, voltada ao contexto educacional, com foco em produtividade, integração entre sistemas e uso prático de inteligência artificial.
 
----
+## 📌 Visão Geral
 
-## 📂 Estrutura da Solução
+A API integra-se ao **portal dos professores** para consultar as aulas do dia e, a partir desses dados, gera recados otimizados e contextualizados utilizando **LLMs via OpenRouter**. O objetivo é reduzir esforço manual e padronizar a comunicação com responsáveis.
 
-```
-TemplateSolution
-├── src
-│   ├── Backend
-│   │   ├── Template.API            # Camada de apresentação (Controllers, Middlewares, Swagger)
-│   │   ├── Template.Application    # Casos de uso, validações, DTOs
-│   │   ├── Template.Domain         # Entidades, agregados, regras de negócio
-│   │   └── Template.Infrastructure # Serviços externos e persistência (sem migrations)
-│   │
-│   └── Shared
-│       ├── Template.Communication  # Contratos de entrada/saída (DTOs, Responses, Requests)
-│       └── Template.Exceptions     # Tratamento e padronização de erros
-│
-└── tests
-    ├── CommonTestUtilities         # Utilitários para os testes
-    ├── UseCases.Test               # Testes de Unidade
-    ├── Validators.Test             # Testes de validações
-    └── WebApi.Test                 # Testes de Integração
-             
-```
+## ⚙️ Funcionalidades
 
----
+* Consulta de aulas do dia via integração com API externa
+* Geração automática de recados utilizando LLMs
+* Exposição de endpoints REST previsíveis e seguros
+* Orquestração de dados educacionais para geração de texto
 
-## 🛠️ O que já vem pronto
+## 🛠 Tecnologias Utilizadas
 
-* **.NET 8** como framework base.
-* **Arquitetura modular** inspirada em DDD.
-* **Princípios SOLID** aplicados.
-* **FluentValidation** para validação de dados.
-* **Tratamento de erros centralizado** (exceptions + middlewares).
-* **Injeção de dependências (DI)** configurada.
-* **Swagger/OpenAPI** para documentação automática.
-* **Testes automatizados**: unitários e de integração.
-* **Pipeline CI/CD configurado** (build, testes e análise automática).
-* **Dockerfile pronto** para containerização da aplicação.
-* **Integração com SonarCloud** para análise contínua de qualidade do código.
+* **C#**
+* **ASP.NET Core**
+* **APIs REST**
+* **Integração com LLMs (OpenRouter)**
+* **Clean Architecture**
+* **DDD**
+* **SOLID / Clean Code**
+
+## 🧱 Arquitetura
+
+O projeto segue princípios de **Clean Architecture e DDD**, com separação clara de responsabilidades entre camadas, facilitando manutenção, testes e evolução do sistema.
+
+## ☁️ Infraestrutura & DevOps
+
+* **Docker**
+* **Azure App Service**
+* **Azure Container Registry**
+* **CI/CD com GitHub Actions**
+
+## 🎯 Objetivo do Projeto
+
+Automatizar e otimizar a comunicação entre professores e responsáveis, aplicando inteligência artificial de forma prática em um cenário educacional real.
 
 ---
 
-## ⚡ Como Rodar Localmente
-
-### Requisitos
-
-* [.NET SDK 8.0+](https://dotnet.microsoft.com/)
-* [Docker](https://www.docker.com/)
-
-### Rodando com .NET CLI
-
-```bash
-git clone https://github.com/SEU_USUARIO/SEU_REPO.git
-cd src/Backend/Template.API
-dotnet run
-```
-
-👉 Acesse o Swagger: [https://localhost:5000/swagger](https://localhost:5000/swagger)
-
----
-
-## 🐳 Rodando com Docker
-
-```bash
-docker build -t template-api .
-docker run -d -p 5000:8080 --name template-api template-api
-```
----
-
-## 📖 Como Usar o Template
-
-* Adicione seus **casos de uso em Application**.
-* Defina suas **entidades e regras de negócio em Domain**.
-* Configure integrações externas em **Infrastructure**.
-* Exponha endpoints via **API (Controllers)**.
-
----
-
-## 📜 License
-
-Este template é de uso livre para estudos e projetos.
-Adapte conforme suas necessidades!
-
----
+Projeto desenvolvido com foco em engenharia de software, integração com IA e execução em ambiente de nuvem.
